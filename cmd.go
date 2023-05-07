@@ -3,9 +3,9 @@ package main
 import "flag"
 
 type Cmd struct {
-	bind string
+	bind   string
 	remote string
-	ip string
+	ip     string
 }
 
 func parseCmd() Cmd {

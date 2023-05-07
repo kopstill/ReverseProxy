@@ -1,15 +1,16 @@
 package main
 
 import (
-	"net/http"
-	"net/url"
-	"net/http/httputil"
+	"context"
 	"log"
 	"net"
-	"time"
-	"context"
-	"github.com/bogdanovich/dns_resolver"
+	"net/http"
+	"net/http/httputil"
+	"net/url"
 	"strings"
+	"time"
+
+	"github.com/bogdanovich/dns_resolver"
 )
 
 type handle struct {
