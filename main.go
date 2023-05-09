@@ -6,25 +6,25 @@ import (
 )
 
 var cmd Cmd
-var srv http.Server
+var server http.Server
 
 func StartServer(bind string, remote string) {
 	log.Printf("Listening on %s, forwarding to %s", bind, remote)
-	h := &handle{reverseProxy: remote}
-	srv.Addr = bind
-	srv.Handler = h
+	handler := &handler{reverseProxy: remote}
+	server.Addr = bind
+	server.Handler = handler
 	//go func() {
-	if err := srv.ListenAndServe(); err != nil {
-		log.Fatalln("ListenAndServe: ", err)
+	if err := server.ListenAndServe(); err != nil {
+		log.Fatal("ListenAndServe: ", err)
 	}
 	//}()
 }
 
-func StopServer() {
-	if err := srv.Shutdown(nil); err != nil {
-		log.Println(err)
-	}
-}
+// func StopServer() {
+// 	if err := server.Shutdown(nil); err != nil {
+// 		log.Println(err)
+// 	}
+// }
 
 func main() {
 	cmd = parseCmd()

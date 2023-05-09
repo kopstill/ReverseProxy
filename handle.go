@@ -13,13 +13,13 @@ import (
 	"github.com/bogdanovich/dns_resolver"
 )
 
-type handle struct {
+type handler struct {
 	reverseProxy string
 }
 
-func (this *handle) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+func (handler *handler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	log.Println(r.RemoteAddr + " " + r.Method + " " + r.URL.String() + " " + r.Proto + " " + r.UserAgent())
-	remote, err := url.Parse(this.reverseProxy)
+	remote, err := url.Parse(handler.reverseProxy)
 	if err != nil {
 		log.Fatalln(err)
 	}
